@@ -10,7 +10,7 @@ from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 from PIL import Image
 
-# 1. 設定網頁標題 (已修改)
+# 1. 設定網頁標題
 st.set_page_config(page_title="RichMom 懶人記帳", page_icon="💰", layout="centered")
 st.title("💰 RichMom 懶人記帳 (姊妹分享版)")
 
@@ -223,13 +223,16 @@ with tab2:
             st.success("已新增")
             st.rerun()
 
-# === Tab 3: 分期計算 ===
+# === Tab 3: 分期計算 (已修正：包含銀行帳戶) ===
 with tab_inst:
-    st.subheader("💳 信用卡分期計算機")
+    st.subheader("💳 分期與定期扣款計算機")
     with st.container(border=True):
         i_col1, i_col2 = st.columns(2)
         i_item = i_col1.text_input("商品名稱", placeholder="例如：iPhone 16")
-        i_card = i_col2.selectbox("使用信用卡", user_cards if user_cards else ["信用卡"])
+        
+        # 這裡修改了：合併信用卡和銀行帳戶
+        installment_sources = user_cards + user_banks
+        i_card = i_col2.selectbox("扣款方式 (信用卡/銀行)", installment_sources if installment_sources else ["信用卡"])
         
         i_col3, i_col4 = st.columns(2)
         i_price = i_col3.number_input("總金額", min_value=0, step=100, value=30000)
