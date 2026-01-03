@@ -1,0 +1,8 @@
+streamlit
+gspread
+google-auth
+pandas
+plotly
+google-generativeai
+python-dateutil
+altair
