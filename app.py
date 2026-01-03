@@ -12,6 +12,16 @@ from PIL import Image
 
 # 1. 設定網頁標題
 st.set_page_config(page_title="RichMom 懶人記帳", page_icon="logo.png", layout="centered")
+logo_url = "https://raw.githubusercontent.com/twd0405177-crypto/richmom-accounting/main/logo.png"
+
+st.markdown(
+    f"""
+    <head>
+        <link rel="apple-touch-icon" href="{logo_url}">
+    </head>
+    """,
+    unsafe_allow_html=True
+)
 st.title("💰 RichMom 懶人記帳 (姊妹分享版)")
 
 # --- 側邊欄：使用者設定 ---
@@ -342,4 +352,5 @@ with tab4:
                     st.rerun()
                 except Exception as e: st.error(f"失敗: {e}")
     else: st.info("無資料")
+
 
